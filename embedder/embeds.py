@@ -28,6 +28,7 @@ def episodesinfoEmbed(data, podcastindex, limit):
 
 def episodeEmbed(data, episodeindex):
     embed = discord.Embed(title="You are listening to", color=0x552E12)
+    data=data[0]
     embed.add_field(name=data[2], value=f"{data[4]}\n*{data[5]}*  **{data[3]}**", inline=False)
     embed.set_thumbnail(url=data[6])
     embed.set_author(name="Listen to your heart")

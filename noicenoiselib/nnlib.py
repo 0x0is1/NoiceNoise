@@ -45,7 +45,7 @@ def getEpisodesInfo(pid):
         pid = i["podcastId"]
         title = i["title"]
         duration = f'{int(i["duration"]/60)} mins'
-        description = soup(i["description"], 'html.parser').find_all("p")[0].text
+        description = i["description"].split("\n")[0]
         startDate = datetime.fromtimestamp(i["startDate"]/1000, ist).ctime()
         podcast.append((eid, pid, title, duration, description, startDate))
     return podcast
@@ -58,7 +58,7 @@ def getEpisode(eid):
     pid = i["podcastId"]
     title = i["title"]
     duration = f'{int(i["duration"]/60)} mins'
-    description = soup(i["description"], 'html.parser').find_all("p")[0].text
+    description = soup(i["description"], 'html.parser').text.split("\n")[0]
     startDate = datetime.fromtimestamp(i["startDate"]/1000, ist).ctime()
     imageUrl = i["imageUrl"]
     mediaUrl = i["mediaUrl"]
@@ -81,5 +81,3 @@ def getCategory(cid):
         startDate = datetime.fromtimestamp(i["lastUpdated"]/1000, ist).ctime()
         podcasts.append((i["id"], i["title"], i["description"], i["imageUrl"], startDate))
     return podcasts
-
-print(getPodcastslist(podcastOpts.featured)[0])
