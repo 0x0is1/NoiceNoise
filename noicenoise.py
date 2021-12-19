@@ -92,7 +92,7 @@ async def on_reaction_add(reaction, user):
                 except ClientException:
                     vc = discord.utils.get(bot.voice_clients, guild=guild)
                     vc.stop()
-                URL = epcontainer[int(text_channel.id)][int(message.id)][int(args[1])][7]
+                URL = epcontainer[int(text_channel.id)][int(message.id)][0][7]
                 if not vc.is_playing() and URL != None:
                     vc.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
 
